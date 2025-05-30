@@ -1,0 +1,28 @@
+<div class="row mb-4">
+  <div class="col-md-6">
+    <h2>Docentes</h2>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar docentes..." [(ngModel)]="searchQuery">
+      <button class="btn btn-primary" (click)="search()">Buscar</button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 mb-3" *ngFor="let teacher of teachers">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{teacher.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{teacher.department}}</h6>
+        <p class="card-text">{{teacher.email}}</p>
+        <div class="mt-auto">
+          <span class="badge {{getRatingColor(teacher.overallRating)}} rounded-pill">
+            Calificación: {{teacher.overallRating | number:'1.1-1'}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
