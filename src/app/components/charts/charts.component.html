@@ -1,0 +1,41 @@
+<div class="row mb-4">
+  <div class="col-md-6">
+    <h2>Resultados Gráficos</h2>
+  </div>
+  <div class="col-md-6">
+    <div class="row g-2">
+      <div class="col-md-6">
+        <select class="form-select" [(ngModel)]="selectedCareer">
+          <option value="">Todas las carreras</option>
+          <option *ngFor="let career of careers" [value]="career">{{career}}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" [(ngModel)]="selectedSemester">
+          <option [ngValue]="null">Todos los semestres</option>
+          <option *ngFor="let sem of semesters" [value]="sem">{{sem}}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary w-100" (click)="filterCharts()">Filtrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <canvas id="careerChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <canvas id="semesterChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
