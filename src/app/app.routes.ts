@@ -4,7 +4,6 @@ import { EvaluationFormComponent } from './components/evaluation-form/evaluation
 import { TeacherListComponent } from './components/teacher-list/teacher-list.component';
 import { HistoricalEvaluationsComponent } from './components/historical-evaluations/historical-evaluations.component';
 import { ChartsComponent } from './components/charts/charts.component';
-// Importa otros componentes necesarios para rutas
 
 export const routes: Routes = [
   { path: '', component: CourseListComponent },
@@ -13,5 +12,4 @@ export const routes: Routes = [
   { path: 'teachers', component: TeacherListComponent },
   { path: 'historical', component: HistoricalEvaluationsComponent },
   { path: 'charts', component: ChartsComponent },
-  // ... otras rutas
 ];
