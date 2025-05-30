@@ -1,0 +1,52 @@
+<div class="row mb-4">
+  <div class="col-md-6">
+    <h2>Historial de Evaluaciones</h2>
+  </div>
+  <div class="col-md-6">
+    <div class="row g-2">
+      <div class="col-md-5">
+        <select class="form-select" [(ngModel)]="selectedYear">
+          <option [ngValue]="null">Todos los años</option>
+          <option *ngFor="let year of years" [value]="year">{{year}}</option>
+        </select>
+      </div>
+      <div class="col-md-5">
+        <select class="form-select" [(ngModel)]="selectedSemester">
+          <option [ngValue]="null">Todos los semestres</option>
+          <option [value]="1">Semestre 1</option>
+          <option [value]="2">Semestre 2</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary w-100" (click)="filterEvaluations()">Filtrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Curso</th>
+        <th>Año</th>
+        <th>Semestre</th>
+        <th>Calificación</th>
+        <th>Comentario</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let eval of evaluations">
+        <td>{{getCourseName(eval.courseId)}}</td>
+        <td>{{eval.year}}</td>
+        <td>{{eval.semester}}</td>
+        <td>
+          <span class="badge bg-primary rounded-pill">{{eval.rating}}</span>
+        </td>
+        <td>{{eval.comment}}</td>
+        <td>{{eval.date | date:'dd/MM/yyyy'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
