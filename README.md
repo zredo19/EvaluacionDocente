@@ -39,14 +39,3 @@ docker run -d -p 80:80 evaluacion-docente
 ¡Listo! Abre tu navegador web y ve a la siguiente dirección para ver la aplicación funcionando:
 
 http://localhost:80 (o el puerto que hayas elegido, como http://localhost:80).
-
-## Estructura del proyecto
-
-proyecto-aplicaciones/
-├── src/
-│   ├── app/
-│   ├── assets/
-│   ├── index
-├── angular.json
-├── package.json
-└── tsconfig.json
