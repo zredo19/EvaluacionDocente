@@ -39,3 +39,15 @@ docker run -d -p 80:80 evaluacion-docente
 ¡Listo! Abre tu navegador web y ve a la siguiente dirección para ver la aplicación funcionando:
 
 http://localhost:80 (o el puerto que hayas elegido, como http://localhost:80).
+´´´
+# 1. Clona el repositorio (si aún no lo has hecho)
+git clone <URL_DE_TU_REPOSITORIO>
+cd redsalud-gestion/backend
+
+# 2. Instala las dependencias de Node.js
+# Este comando leerá el package.json e instalará todas las librerías necesarias.
+npm install
+
+# 3. Inicia el servidor de NestJS
+npm run start:dev
+´´´
