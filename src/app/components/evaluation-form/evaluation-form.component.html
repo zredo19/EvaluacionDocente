@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <div *ngIf="course; else loadingOrError">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h2 class="h4 mb-0">Evaluar Curso: {{ course.name }}</h2>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ course.code }}</h5>
+        <p class="card-text">
+          <strong>Profesor:</strong> {{ course.teacher_name }} <br>
+          <strong>Carrera:</strong> {{ course.career }} <br>
+          <strong>Semestre:</strong> {{ course.semester }}
+        </p>
+
+        <hr>
+
+        <form (ngSubmit)="submitEvaluation()" #evaluationForm="ngForm" *ngIf="!successMessage">
+          <div class="mb-3">
+            <label for="rating" class="form-label">Calificación (1.0 a 7.0)</label>
+            <input 
+              type="number" 
+              class="form-control" 
+              id="rating" 
+              name="rating"
+              [(ngModel)]="rating"
+              min="1"
+              max="7"
+              step="0.1"  
+              required
+              placeholder="Ej: 5.5">
+            </div>
+
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comentario (obligatorio)</label>
+            <textarea 
+              class="form-control" 
+              id="comment" 
+              name="comment"
+              rows="4" 
+              [(ngModel)]="comment"
+              required
+              placeholder="Deja tu opinión sobre el curso y el docente..."></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            class="btn btn-primary w-100"
+            [disabled]="evaluationForm.invalid || !rating || !comment">
+            Enviar Evaluación
+          </button>
+        </form>
+
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
+          {{ successMessage }}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingOrError>
+    <div *ngIf="!errorMessage" class="text-center">
+      <p>Cargando información del curso...</p>
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
+      {{ errorMessage }}
+    </div>
+  </ng-template>
+
+</div>

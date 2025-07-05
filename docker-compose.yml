@@ -1,0 +1,22 @@
+# /docker-compose.yml (versión sin el tag "version")
+
+services:
+  backend:
+    build:
+      context: ./campuslibre_backend
+      dockerfile: Dockerfile
+    container_name: campuslibre-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./campuslibre_backend/db.sqlite3:/app/db.sqlite3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: campuslibre-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

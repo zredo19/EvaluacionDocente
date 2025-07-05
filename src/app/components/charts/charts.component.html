@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h2 class="h4 mb-0">Gráficos de Calificaciones</h2>
+    </div>
+    <div class="card-body">
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label for="careerFilter" class="form-label">Filtrar por Carrera:</label>
+          <select id="careerFilter" class="form-select" [(ngModel)]="selectedCareer" (change)="loadReportData()">
+            <option [ngValue]="null">Todas las Carreras</option>
+            <option *ngFor="let career of careers" [value]="career">{{ career }}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="semesterFilter" class="form-label">Filtrar por Semestre:</label>
+          <select id="semesterFilter" class="form-select" [(ngModel)]="selectedSemester" (change)="loadReportData()">
+            <option [ngValue]="null">Todos los Semestres</option>
+            <option *ngFor="let semester of semesters" [value]="semester">{{ semester }}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="yearFilter" class="form-label">Filtrar por Año:</label>
+          <select id="yearFilter" class="form-select" [(ngModel)]="selectedYear" (change)="loadReportData()">
+            <option [ngValue]="null">Todos los Años</option>
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-100 mb-4" (click)="loadReportData()" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Filtrar Gráficos</span>
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span *ngIf="isLoading"> Cargando...</span>
+      </button>
+
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-header text-center">Calificaciones Promedio por Carrera</div>
+            <div class="card-body" style="height: 300px;">
+              <canvas id="careerChartCanvas"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <div class="card-header text-center">Calificaciones Promedio por Semestre</div>
+            <div class="card-body" style="height: 300px;">
+              <canvas id="semesterChartCanvas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

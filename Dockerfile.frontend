@@ -1,0 +1,23 @@
+# /Dockerfile.frontend
+
+# --- Etapa 1: Compilación (Build) ---
+FROM node:18 AS build
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# --- Etapa 2: Servidor (Serve) ---
+FROM nginx:alpine
+
+RUN apk update && apk upgrade
+
+# ✅ CORRECCIÓN: Se reemplazó 'frontend-project-name' por 'proyecto-aplicaciones'.
+COPY --from=build /app/dist/proyecto-aplicaciones/browser /usr/share/nginx/html
+
+# Copia la configuración de Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80

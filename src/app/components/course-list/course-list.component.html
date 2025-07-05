@@ -1,0 +1,59 @@
+<div class="container mt-4">
+
+  <div *ngIf="unevaluatedCount > 0" class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">¡Atención!</h4>
+    <p>Tienes <strong>{{ unevaluatedCount }}</strong> curso(s) pendiente(s) de evaluación. Tu opinión es importante para mejorar la calidad académica.</p>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h2 class="h4 mb-0">Mis Cursos Inscritos</h2>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-8">
+          <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Buscar curso..."
+            [(ngModel)]="searchQuery"
+            (input)="applyFilter()">
+        </div>
+        <div class="col-md-4">
+          <select class="form-select" [(ngModel)]="searchType" (change)="applyFilter()">
+            <option value="name">Buscar por Nombre</option>
+            <option value="code">Buscar por Código</option>
+            <option value="teacher">Buscar por Docente</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="list-group">
+        <ng-container *ngIf="filteredCourses.length > 0; else noCourses">
+          <div *ngFor="let course of filteredCourses" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="mb-1">{{ course.name }}</h5>
+              <p class="mb-1">
+                <small><strong>Código:</strong> {{ course.code }} | <strong>Docente:</strong> {{ course.teacher_name }}</small>
+              </p>
+            </div>
+            <div>
+              <button *ngIf="!course.isEvaluated" class="btn btn-primary btn-sm" (click)="evaluateCourse(course.id)">
+                Evaluar
+              </button>
+              <span *ngIf="course.isEvaluated" class="badge bg-success rounded-pill">
+                ✓ Evaluado
+              </span>
+            </div>
+          </div>
+        </ng-container>
+        
+        <ng-template #noCourses>
+          <div class="list-group-item text-center text-muted">
+            No se encontraron cursos con los filtros actuales.
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

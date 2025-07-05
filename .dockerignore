@@ -1,0 +1,20 @@
+# /.dockerignore
+
+# Dependencias y builds
+node_modules
+dist
+.angular
+npm-debug.log
+
+# Entornos virtuales
+venv
+.env
+
+# Archivos del editor y del sistema
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
